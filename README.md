@@ -1,37 +1,78 @@
-🎭 Playwright TodoMVC Automation Framework
-A robust End-to-End (E2E) test automation project demonstrating modern testing practices using Playwright with JavaScript against a React Application.
+# Playwright Mini Project – TodoMVC Automation
 
-🚀 Project Overview
-This project automates critical user workflows of the TodoMVC React Application, showcasing:
+## 📌 Project Overview
+This project demonstrates **end-to-end UI automation** using **Playwright** on the TodoMVC React application.  
+It focuses on writing reliable automated tests, validating user flows, and generating detailed execution reports.
 
-Resilient Locator Strategies using getByRole and getByTestId
-Atomic Test Design principles
-Page Interventions (Input, Click, Filter, Check)
-State Verification & Assertions
-🛠️ Tech Stack
-Automation Tool: Playwright
-Language: JavaScript
-Test Runner: Playwright Test
-Reporting: Playwright HTML Reporter
-📂 Test Scenarios Covered
-The project includes atomic tests (todo.spec.js) covering:
+The project is built to showcase **real-world QA automation skills** such as test design, assertions, debugging, and reporting.
 
-✅ Task Creation: Adding multiple Todo items dynamically
-✅ Task Management: Marking items as completed
-✅ Filtering: Verifying 'Active' vs 'Completed' filters
-✅ Verification: Asserting visibility and state of todo items
-🏃‍♂️ How to Run
-Clone the repository:
-git clone https://github.com/pratik9905/MiniProject_PlayWright.git
-Install dependencies:
+---
+
+## 🧪 Application Under Test
+**TodoMVC (React version)**  
+🔗 https://todomvc.com/examples/react/dist/
+
+---
+
+## ✅ Automated Scenarios
+- Add multiple Todo items
+- Mark selected Todo items as completed
+- Validate Todo count and item state using assertions
+- Capture screenshots, video, and trace on test failure
+- Generate and review Playwright HTML execution reports
+
+---
+
+## 🛠 Tech Stack
+- **Automation Tool:** Playwright  
+- **Programming Language:** JavaScript  
+- **Test Runner:** Playwright Test  
+- **Reporting:** Playwright HTML Reporter  
+- **Runtime:** Node.js  
+- **IDE:** VS Code  
+
+---
+
+## 📂 Test Coverage
+The test file (`todo-demo1.spec.js`) includes:
+1. **Task Creation** – Adding multiple Todo items dynamically  
+2. **Task Management** – Marking items as completed  
+3. **Validation** – Verifying visibility, text, and state of Todo items  
+4. **Assertions** – Ensuring correct application behavior  
+
+---
+
+## 📊 Reports & Debugging Features
+- HTML execution report  
+- Screenshots captured on failure  
+- Video recording on failure  
+- Trace viewer for detailed debugging  
+
+---
+
+## ▶️ How to Run the Project
+
+### 1️⃣ Install dependencies
+```bash
 npm install
-Run tests (Headless):
-npx playwright test
-Run tests (Headed):
-npx playwright test --headed
-View Report:
-npx playwright show-report
-🤝 Contribution
-Feel free to fork this project and submit PRs! Open to discussions on improving test patterns.
+```
 
-Created by Jeevan - SDET / QA Engineer
+### 2️⃣ Run tests (Headless)
+```bash
+npx playwright test
+```
+
+### 3️⃣ Run tests (Headed mode)
+```bash
+npx playwright test --headed
+```
+
+### 4️⃣ View HTML Report
+```bash
+npx playwright show-report
+```
+
+---
+
+## 👤 Author
+**Jeevan A R**
