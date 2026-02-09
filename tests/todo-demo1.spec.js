@@ -1,29 +1,43 @@
 import { test, expect } from '@playwright/test';
 
-test('test to-do app @sanity', async ({ page }) => {
-  await page.goto('https://todomvc.com/examples/react/dist/');
-  await page.getByTestId('text-input').click();
-  await page.getByTestId('text-input').fill('Buy Groceries');
-  await page.getByTestId('text-input').press('Enter');
-  await page.getByTestId('text-input').click();
-  await page.getByTestId('text-input').fill('Pay Bills');
-  await page.getByTestId('text-input').press('Enter');
-  await page.getByTestId('text-input').fill('Go for walk');
-  await page.getByTestId('text-input').press('Enter');
-  await page.getByTestId('text-input').fill('Play');
-  await page.getByTestId('text-input').press('Enter');
-  await page.getByTestId('text-input').fill('Rest');
-  await page.getByTestId('text-input').press('Enter');
-  await page.getByRole('listitem').filter({ hasText: 'Buy Groceries' }).getByTestId('todo-item-toggle').check();
-  await page.getByRole('listitem').filter({ hasText: 'Rest' }).getByTestId('todo-item-toggle').check();
+test('TodoMVC end-to-end sanity @sanity', async ({ page }) => {
+  await page.goto('https://todomvc.com/examples/react/dist/', {
+    waitUntil: 'networkidle',
+  });
+
+  const input = page.getByTestId('text-input');
+
+  const addTodo = async (text) => {
+    await input.waitFor({ state: 'visible' });
+    await input.fill(text);
+    await input.press('Enter');
+  };
+
+  await addTodo('Buy Groceries');
+  await addTodo('Pay Bills');
+  await addTodo('Go for walk');
+  await addTodo('Play');
+  await addTodo('Rest');
+
+  const todos = page.locator('.todo-list li');
+  await expect(todos).toHaveCount(5);
+
+  await todos.filter({ hasText: 'Buy Groceries' })
+    .locator('.toggle')
+    .click();
+
+  await todos.filter({ hasText: 'Rest' })
+    .locator('.toggle')
+    .click();
+
   await page.getByRole('link', { name: 'Active' }).click();
+  await expect(todos).toHaveCount(3);
+
   await page.getByRole('link', { name: 'Completed' }).click();
-  await page.getByRole('link', { name: 'Active' }).click();
-  await expect(page.getByText('Play')).toBeVisible();
-  await expect(page.getByTestId('todo-list')).toContainText('Go for walk');
-  await expect(page.getByTestId('todo-list')).toContainText('Go for walk');
-  await page.locator('body').click();
+  await expect(todos).toHaveCount(2);
+
   await page.getByRole('button', { name: 'Clear completed' }).click();
+
   await page.getByRole('link', { name: 'All' }).click();
-  await expect(page.locator('.todo-list li')).toHaveCount(4);
+  await expect(todos).toHaveCount(3);
 });
